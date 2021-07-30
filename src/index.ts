@@ -1,5 +1,5 @@
 import app from './app'
-
+import './database'
 const PORT = app.get('port')
 
 function main() {

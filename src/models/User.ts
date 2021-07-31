@@ -10,11 +10,15 @@ const userSchema = new Schema<UserSchema>({
         type: String,
         required: true,
         min: 4,
-        lowecase: true,
+        lowercase: true,
+        trim: true
     },
     email: {
         type: String,
+        required: true,
         unique: true,
+        lowercase: true,
+        trim: true,
     },
     password: {
         type: String,

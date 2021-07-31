@@ -1,9 +1,9 @@
 import { Schema, model, Document } from 'mongoose'
 import { User } from 'types'
 import bcrypt from 'bcryptjs'
+import { encryptPassword } from '../help/encrypt'
 export interface UserSchema extends Document, User {
-    encryptPassword(pass: string): Promise<string>,
-    validatePassword(pass: string): Promise<boolean>
+    comparePassword(pass: string): Promise<boolean>
 }
 const userSchema = new Schema<UserSchema>({
     username: {
@@ -25,11 +25,15 @@ const userSchema = new Schema<UserSchema>({
         required: true,
     },
 })
-userSchema.methods.encryptPassword = async (pass: string): Promise<string> => {
-    const salt = await bcrypt.genSalt(10)
-    return bcrypt.hash(pass, salt)
-}
-userSchema.methods.validatePassword = async function (pass: string): Promise<boolean> {
+userSchema.pre<UserSchema>('save', async function (next) {
+    const user = this
+    if (!user.isModified('password')) return next()
+    const hash = await encryptPassword(user.password)
+    user.password = hash
+    next()
+})
+
+userSchema.methods.comparePassword = async function (pass: string): Promise<boolean> {
     return await bcrypt.compare(pass, this.password)
 }
 export default model<UserSchema>('User', userSchema)

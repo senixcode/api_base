@@ -4,7 +4,7 @@ import morgan from 'morgan'
 //initialization
 const app: Application = express()
 
-import authRoutes from './routes/auth'
+import authRoutes from './routes/auth.route'
 
 // setting
 app.set('port', 4000)

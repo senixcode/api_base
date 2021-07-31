@@ -1,4 +1,4 @@
-import { RouteAuth } from 'emuns'
+import { RouteAuth } from '../emuns'
 import { Router } from 'express'
 const router: Router = Router()
 import * as AuthController from '../controllers/auth.controller'

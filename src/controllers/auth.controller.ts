@@ -1,12 +1,6 @@
 import { Request as Req, Response as Res } from 'express'
+import { day, getToken } from '../help/jwt'
 import User, { UserSchema } from '../models/User'
-import jwt from 'jsonwebtoken'
-
-const getToken = (id: any): string => {
-    const TOKEN_SECRET = process.env.TOKEN_SECRET || 'tokenTest'
-    const token: string = jwt.sign({ _id: id }, TOKEN_SECRET)
-    return token
-}
 
 export const signup = async (req: Req, res: Res) => {
     const { username, email, password } = req.body
@@ -25,9 +19,12 @@ export const signin = async (req: Req, res: Res) => {
     if (!findUser) return res.status(400).json("email or password is wrong")
     const correctPassword: boolean = await findUser.validatePassword(req.body.password)
     if (!correctPassword) return res.status(400).json('invalid password')
-    res.header('auth-token', getToken(findUser._id)).json(findUser)
+    res.header('auth-token', getToken(findUser._id, { expiresIn: day })).json(findUser)
 }
 
-export const profile = (req: Req, res: Res) => {
-    res.send('profile')
+export const profile = async (req: Req, res: Res) => {
+    const { userId } = req
+    const user = await User.findById(userId)
+    if (!user) return res.status(404).json('No User found')
+    res.json(user)
 }

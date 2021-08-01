@@ -4,7 +4,7 @@
 ### SIGNUP
 POST http://{{host}}/auth/signup HTTP/1.1
 User-Agent: rest-client
-content-type: application/json
+content-type: {{contentType}} 
 
 {
     "username":"Senix",
@@ -15,7 +15,7 @@ content-type: application/json
 ### SIGNIN
 POST http://{{host}}/auth/signin HTTP/1.1
 User-Agent: rest-client
-content-type: application/json
+content-type: {{contentType}} 
 
 {
     "email":"senix@gmail.com",

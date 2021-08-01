@@ -1,5 +1,5 @@
 import { Request as Req, Response as Res, NextFunction as Next } from 'express'
-import siginSchema from "../validations/SignIn.schema"
+import siginSchema from "../validations/SignIn.scheme"
 
 const SignInValidator = async (req: Req, res: Res, next: Next) => {
     try {

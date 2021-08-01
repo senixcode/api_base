@@ -1,7 +1,7 @@
 @host = localhost:4000/api
 @contentType = application/json 
 
-### SIGNUP
+### AUTH Signup -> the token inspires in a day
 POST http://{{host}}/auth/signup HTTP/1.1
 User-Agent: rest-client
 content-type: {{contentType}} 
@@ -12,7 +12,7 @@ content-type: {{contentType}}
     "password":"password"
 }
 
-### SIGNIN
+### AUTH Signin -> the token inspires in a day
 POST http://{{host}}/auth/signin HTTP/1.1
 User-Agent: rest-client
 content-type: {{contentType}} 
@@ -21,3 +21,8 @@ content-type: {{contentType}}
     "email":"senix@gmail.com",
     "password":"password"
 }
+
+### USER Profile -> the token inspires in a day
+GET http://{{host}}/user/profile HTTP/1.1
+User-Agent: rest-client
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTA1YTBiZmU1ZjY1ZTM2Mjg5N2M1ZDgiLCJpYXQiOjE2Mjc4NTk4MjUsImV4cCI6MTYyNzk0NjIyNX0.pVhv67NEH2dtPaZxDMJSnHWPDdxog-dv0KRbvsduNzc 

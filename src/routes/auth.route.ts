@@ -43,7 +43,7 @@ import SignUpValidator from '../middleware/signupValidator'
  * /api/auth/signup:
  *  post:
  *    summary: Register User, Returns the User and Token.
- *    description: The Token in the headers as 'auth-token'.
+ *    description: The Token in the headers as 'auth-token', the token inspires in a day.
  *    tags: [Auths]
  *    requestBody:
  *        required: true
@@ -71,7 +71,7 @@ router.post(RouteAuth.signup, SignUpValidator, AuthController.signup)
  * /api/auth/signin:
  *  post:
  *    summary: Authenticate User, Returns the User and Token.
- *    description: The Token in the headers as 'auth-token'.
+ *    description: The Token in the headers as 'auth-token', the token inspires in a day.
  *    tags: [Auths]
  *    requestBody:
  *        required: true

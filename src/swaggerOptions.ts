@@ -8,7 +8,7 @@ export const options = {
         },
         servers: [
             {
-                uri: "http://localhost:4000"
+                url: "http://localhost:4000"
             }
         ]
     },

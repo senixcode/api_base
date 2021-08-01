@@ -3,9 +3,10 @@ import { Router } from 'express'
 const router: Router = Router()
 import * as AuthController from '../controllers/auth.controller'
 import TokenValidation from '../middleware/verifyToken'
+import SignInValidator from '../middleware/signInValidator'
 
 router.post(RouteAuth.signup, AuthController.signup)
-router.post(RouteAuth.signin, AuthController.signin)
+router.post(RouteAuth.signin, SignInValidator, AuthController.signin)
 router.get(RouteAuth.profile, TokenValidation, AuthController.profile)
 
 export default router

@@ -9,6 +9,7 @@ import { options } from './swaggerOptions'
 
 // import routes
 import authRoutes from './routes/auth.route'
+import userRoutes from './routes/user.route'
 
 //initialization
 const app: Application = express()
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: true }))
 const specs = swaggerJSDoc(options)
 
 app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs))
 
 export default app

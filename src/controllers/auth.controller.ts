@@ -4,6 +4,8 @@ import User, { UserSchema } from '../models/User'
 
 export const signup = async (req: Req, res: Res) => {
     const { username, email, password } = req.body
+    const findUser = await User.findOne({ email })
+    if (findUser) return res.status(401).json('this email is already registered')
     const userNew: UserSchema = new User({
         username,
         email,
@@ -14,9 +16,10 @@ export const signup = async (req: Req, res: Res) => {
 }
 
 export const signin = async (req: Req, res: Res) => {
-    const findUser = await User.findOne({ email: req.body.email })
+    const { email, password } = req.body
+    const findUser = await User.findOne({ email })
     if (!findUser) return res.status(400).json("email or password is wrong")
-    const correctPassword: boolean = await findUser.comparePassword(req.body.password)
+    const correctPassword: boolean = await findUser.comparePassword(password)
     if (!correctPassword) return res.status(400).json('invalid password')
     res.header('auth-token', getToken(findUser._id, { expiresIn: day })).json(findUser)
 }

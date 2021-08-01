@@ -1,0 +1,23 @@
+@host = localhost:4000/api
+@contentType = application/json 
+
+### SIGNUP
+POST http://{{host}}/auth/signup HTTP/1.1
+User-Agent: rest-client
+content-type: application/json
+
+{
+    "username":"Senix",
+    "email":"dani@gmail.com",
+    "password":"password"
+}
+
+### SIGNIN
+POST http://{{host}}/auth/signin HTTP/1.1
+User-Agent: rest-client
+content-type: application/json
+
+{
+    "email":"senix@gmail.com",
+    "password":"password"
+}

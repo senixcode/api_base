@@ -8,7 +8,7 @@ content-type: {{contentType}}
 
 {
     "username":"Senix",
-    "email":"dani@gmail.com",
+    "email":"test@gmail.com",
     "password":"password"
 }
 

@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }))
 //routes
 const specs = swaggerJSDoc(options)
 
-app.use('/', (_, res: Res) => {
+app.get('/', (_, res: Res) => {
     res.json({
         author: "Luis Romero, @senixcode",
         description: "Is an api rest base with authentication (typscript, auth key, swagger, super test)",
@@ -38,7 +38,7 @@ app.use('/api/user', userRoutes)
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs))
 
 // Handle 404
-app.use((_, res: Res) => {
+app.get('*', (_, res: Res) => {
     res.send('404: Route not Found');
 });
 

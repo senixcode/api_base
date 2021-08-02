@@ -5,5 +5,10 @@ export enum RouteAuth {
 
 export enum RouteUser {
     profile = '/profile'
+}
 
+export enum NodeEnv {
+    prod = 'production',
+    dev = 'development',
+    test = 'test'
 }

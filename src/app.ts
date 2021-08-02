@@ -1,7 +1,7 @@
 import express, { Application, Response as Res } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-
+import dotenv from 'dotenv'
 //swagger
 import swaggerUI from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
@@ -10,10 +10,11 @@ import { options } from './swaggerOptions'
 // import routes
 import authRoutes from './routes/auth.route'
 import userRoutes from './routes/user.route'
+import { NodeEnv } from './emuns'
 
 //initialization
 const app: Application = express()
-
+if ([NodeEnv.dev, NodeEnv.test].includes(process.env.NODE_ENV as NodeEnv)) dotenv.config()
 
 // setting
 app.set('port', 4000)

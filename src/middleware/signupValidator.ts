@@ -1,5 +1,5 @@
 import { Request as Req, Response as Res, NextFunction as Next } from 'express'
-import signupSchema from "../validations/SignUp.scheme"
+import signupSchema from "../validators/SignUp.scheme"
 
 const SignUpValidator = async (req: Req, res: Res, next: Next) => {
     try {

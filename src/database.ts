@@ -6,8 +6,10 @@ const dbOptions: ConnectOptions = {
     useUnifiedTopology: true,
     useCreateIndex: true,
 }
+export default function initializetDatabase(): void {
 
-mongoose
-    .connect(config.DB.URI, dbOptions)
-    .then(() => console.log('database is connected'))
-    .catch((err) => console.log(err))
+    mongoose
+        .connect(config.DB.URI, dbOptions)
+        .then(() => console.log('database is connected'))
+        .catch((err) => console.log(err))
+}

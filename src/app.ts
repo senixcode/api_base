@@ -1,4 +1,6 @@
 import express, { Application, Response as Res } from 'express'
+import initializetDatabase from './database'
+
 import cors from 'cors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
@@ -12,9 +14,13 @@ import authRoutes from './routes/auth.route'
 import userRoutes from './routes/user.route'
 import { NodeEnv } from './emuns'
 
+const { NODE_ENV } = process.env
+if ([NodeEnv.dev, NodeEnv.test].includes(NODE_ENV as NodeEnv)) dotenv.config()
+
 //initialization
 const app: Application = express()
-if ([NodeEnv.dev, NodeEnv.test].includes(process.env.NODE_ENV as NodeEnv)) dotenv.config()
+initializetDatabase()
+
 
 // setting
 app.set('port', 4000)

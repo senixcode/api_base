@@ -7,7 +7,7 @@ export const signup = async (req: Req, res: Res) => {
         const { username, email, password } = req.body
         const findUser = await User.findOne({ email })
         if (findUser)
-            return res.status(401).json('this email is already registered')
+            return res.status(400).json('this email is already registered')
         const userNew: UserSchema = new User({
             username,
             email,
